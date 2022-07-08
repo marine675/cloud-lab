@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/kaniko-project/executor'
+  args:
+  - --dockerfile=${_DOCKERFILE}
+  - --destination=gcr.io/$PROJECT_ID/hello-bob:latest
+  - --destination=gcr.io/$PROJECT_ID/hello-bob:${_VERSION}
+
+- name: 'busybox'
+  args: ['echo', 'Hello Bob - your build completed successfully']
+
+substitutions:
+  _DOCKERFILE: Dockerfile
+  _VERSION: v2
